@@ -1,9 +1,23 @@
-import { Button } from "@/components/ui/button";
-import { UserButton } from "@clerk/nextjs";
+"use client"
+
+import { StoreModal } from "@/components/modals/store-modal";
+import { Modal } from "@/components/ui/modal"
+import { useStoreModal } from "@/hooks/use-store-modal"
+import { useEffect } from "react";
+
 export default function SetupPage() {
+  const onOpen = useStoreModal((state) => state.onOpen);
+  const isOpen = useStoreModal((state) => state.isOpen);
+
+  useEffect(() => {
+    if(!isOpen) {
+      onOpen();
+    }
+  }, [isOpen, onOpen])
+
   return (
-  <div>
-    <p>This is a protected Route!</p>
+  <div className="p-4">
+      Hiiiiiiii
   </div>
   )
 }
